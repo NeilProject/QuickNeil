@@ -42,10 +42,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="..\TrickyUnits\Dirry.cs">
+      <Link>Units\Dirry.cs</Link>
+    </Compile>
+    <Compile Include="..\TrickyUnits\FileList.cs">
+      <Link>Units\FileList.cs</Link>
+    </Compile>
+    <Compile Include="..\TrickyUnits\mkl.cs">
+      <Link>Units\mkl.cs</Link>
+    </Compile>
+    <Compile Include="..\TrickyUnits\qstr.cs">
+      <Link>Units\qstr.cs</Link>
+    </Compile>
+    <Compile Include="..\TrickyUnits\qstream.cs">
+      <Link>Units\qstream.cs</Link>
+    </Compile>
+    <Compile Include="..\TrickyUnits\QuickConsoleColors.cs">
+      <Link>Units\QuickConsoleColors.cs</Link>
+    </Compile>
+    <Compile Include="..\TrickyUnits\TrickyDbg.cs">
+      <Link>Units\TrickyDbg.cs</Link>
+    </Compile>
+    <Compile Include="QuickNeil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\..\Lua\Neil\Neil.lua">
+      <Link>Neil\Neil.lua</Link>
+    </EmbeddedResource>
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
