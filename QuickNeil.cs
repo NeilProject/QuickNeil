@@ -44,7 +44,8 @@ namespace QuickNeil {
             Dirry.InitAltDrives();
             FileList.Hello();
             qstr.Hello();
-            QuickStream.Hello();            
+            QuickStream.Hello();
+            Launch.Hello();
         }
 
         static void Main(string[] args) {
