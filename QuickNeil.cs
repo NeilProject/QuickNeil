@@ -23,21 +23,52 @@
 // 
 // Version: 20.07.17
 // EndLic
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using TrickyUnits;
 
 namespace QuickNeil {
     class QuickNeil {
-        static void Main(string[] args) {
-            // The code provided will print ???Hello World??? to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+        static void Head() {
+            QCol.Yellow("Quick Neil ");
+            QCol.Cyan($"{MKL.Newest}\n");
+            QCol.Green($"(c) Jeroen P. Broks {MKL.CYear(2020)}\n");
+            QCol.Magenta("Released under the terms of the GPL3\n\n");
+        }
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+        static QuickNeil() {
+            QCol.Hello();
+            Dirry.InitAltDrives();
+            FileList.Hello();
+            qstr.Hello();
+            QuickStream.Hello();            
+        }
+
+        static void Main(string[] args) {
+            try {
+                MKL.Lic    ("Quick Neil - QuickNeil.cs","GNU General Public License 3");
+                MKL.Version("Quick Neil - QuickNeil.cs","20.07.17");
+                if (args.Length==0) {
+                    Head();
+                    QCol.Cyan("Usage: ");
+                    QCol.Yellow($"{qstr.StripAll(MKL.MyExe)} ");
+                    QCol.Green("<script file> ");
+                    QCol.Magenta("[<arguments>]\n\n");
+                    QCol.White($"{MKL.All()}\n\n");
+                    return;
+                }
+            } catch (Exception e) {
+                QCol.QuickError(e.Message);
+#if DEBUG
+                QCol.Cyan("Traceback\n");
+                QCol.White($"{e.StackTrace}\n");
+#endif
+            } finally {
+                TrickyDebug.AttachWait();
+            }
         }
     }
 }
