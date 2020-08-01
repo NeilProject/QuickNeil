@@ -71,7 +71,6 @@
     <Compile Include="..\TrickyUnits\TrickyDbg.cs">
       <Link>Units\TrickyDbg.cs</Link>
     </Compile>
-    <Compile Include="Launch.cs" />
     <Compile Include="QuickNeil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

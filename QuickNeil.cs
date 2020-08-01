@@ -26,12 +26,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using TrickyUnits;
+using NLua;
 
 namespace QuickNeil {
     class QuickNeil {
+
+        static Lua State;
+        static readonly string NeilScript = QuickStream.StringFromEmbed("Neil.lua");
+
         static void Head() {
             QCol.Yellow("Quick Neil ");
             QCol.Cyan($"{MKL.Newest}\n");
@@ -45,7 +50,28 @@ namespace QuickNeil {
             FileList.Hello();
             qstr.Hello();
             QuickStream.Hello();
-            Launch.Hello();
+            //Launch.Hello();
+        }
+
+
+        static void LoadScript(string script) {
+            State = new Lua();
+            var CallScript = $"local ls = loadstring or load\nlocal LoadNeil = assert(ls(\"{NeilScript.Replace("\\","\\\\").Replace("\n", "\\n").Replace("\r", "").Replace("\"","\\\"")}\",\"Neil itself\"))\nNeil = LoadNeil()";
+            Debug.WriteLine(CallScript);
+            State.DoString(CallScript, "Call Neil itself");
+            TrickyDebug.Chat("Loaded Neil");
+            var s = QuickStream.LoadString(Dirry.AD(script));
+            TrickyDebug.Chat($"Loaded Script: {script}");
+            //var scr = s.Replace("\\", "\\\\").Replace("\n", "\\n").Replace("\r", "").Replace("\"", "\\\"");
+            var scr = s.Replace("\\","\\\\");
+            for (int i = 0; i < 256; i++) {
+                if (i < 32 || i > 120 || (char)i == '"' ) scr = scr.Replace($"{(char)i}", $"\\{qstr.Right($"00{i}", 3)}");
+            }
+            // Console.WriteLine($"<C#>{scr}</C#>");
+            TrickyDebug.Chat("String secured");
+            var sendscr = $"local translation = assert(Neil.Translate(\"{scr}\",\"Translate: {script}\"))";
+            Debug.WriteLine(sendscr);
+            State.DoString(sendscr,"Translating");
         }
 
         static void Main(string[] args) {
@@ -60,6 +86,8 @@ namespace QuickNeil {
                     QCol.Magenta("[<arguments>]\n\n");
                     QCol.White($"{MKL.All()}\n\n");
                     return;
+                } else {
+                    LoadScript(args[0]);
                 }
             } catch (Exception e) {
                 QCol.QuickError(e.Message);
