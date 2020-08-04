@@ -56,7 +56,7 @@ namespace QuickNeil {
 
         static void LoadScript(string script) {
             State = new Lua();
-            var CallScript = $"local ls = loadstring or load\nlocal LoadNeil = assert(ls(\"{NeilScript.Replace("\\","\\\\").Replace("\n", "\\n").Replace("\r", "").Replace("\"","\\\"")}\",\"Neil itself\"))\nNeil = LoadNeil()";
+            var CallScript = $"ls = loadstring or load\nlocal LoadNeil = assert(ls(\"{NeilScript.Replace("\\","\\\\").Replace("\n", "\\n").Replace("\r", "").Replace("\"","\\\"")}\",\"Neil itself\"))\nNeil = LoadNeil()";
             Debug.WriteLine(CallScript);
             State.DoString(CallScript, "Call Neil itself");
             TrickyDebug.Chat("Loaded Neil");
@@ -69,9 +69,11 @@ namespace QuickNeil {
             }
             // Console.WriteLine($"<C#>{scr}</C#>");
             TrickyDebug.Chat("String secured");
-            var sendscr = $"local translation = assert(Neil.Translate(\"{scr}\",\"Translate: {script}\"))";
+            var sendscr = $"local translation = assert(Neil.Translate(\"{scr}\",\"Translate: {script}\"))\n\nQUICKNEILSCRIPTFUNCTION = assert(ls(translation,\"{script}\"))\n";
             Debug.WriteLine(sendscr);
             State.DoString(sendscr,"Translating");
+            State.DoString("QUICKNEILSCRIPTFUNCTION()","Run-Time");
+            
         }
 
         static void Main(string[] args) {
