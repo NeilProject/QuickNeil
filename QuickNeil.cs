@@ -54,11 +54,12 @@ namespace QuickNeil {
         }
 
 
-        static void LoadScript(string script) {
+        static void LoadScript(string script,string args) {
             State = new Lua();
             var CallScript = $"ls = loadstring or load\nlocal LoadNeil = assert(ls(\"{NeilScript.Replace("\\","\\\\").Replace("\n", "\\n").Replace("\r", "").Replace("\"","\\\"")}\",\"Neil itself\"))\nNeil = LoadNeil()";
             Debug.WriteLine(CallScript);
             State.DoString(CallScript, "Call Neil itself");
+            State.DoString($"Neil.Globals('Args','table','constant',{args})","Set CLI arguments");
             TrickyDebug.Chat("Loaded Neil");
             var s = QuickStream.LoadString(Dirry.AD(script));
             TrickyDebug.Chat($"Loaded Script: {script}");
@@ -89,7 +90,17 @@ namespace QuickNeil {
                     QCol.White($"{MKL.All()}\n\n");
                     return;
                 } else {
-                    LoadScript(args[0]);
+                    var addargs = new StringBuilder("{");
+                    for(int i=1;i<args.Length;i++) {
+                        if (i > 2) addargs.Append(", ");
+                        var arg = args[i].Replace("\\","\\\\");
+                        for (int j = 0; j < 256; j++) {
+                            if (j < 32 || j > 120 || (char)j == '"') arg = arg.Replace($"{(char)j}", $"\\{qstr.Right($"00{j}", 3)}");
+                        }
+                        addargs.Append($"\"{addargs}\"");
+                    }
+                    addargs.Append("}");
+                    LoadScript(args[0],$"{addargs}");
                 }
             } catch (Exception e) {
                 QCol.QuickError(e.Message);
