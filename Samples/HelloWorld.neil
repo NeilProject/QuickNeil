@@ -1,0 +1,4 @@
+Init
+	COut("Hello World!\n")
+End
+
