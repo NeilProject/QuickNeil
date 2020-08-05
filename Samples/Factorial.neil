@@ -1,0 +1,20 @@
+int Factorial(int n)
+	Assert(n>=0,"Invalid input")
+	if n==0
+		return 1
+	end
+	return Factorial(n-1) * n
+end
+
+
+Init
+	COut("!1 = ",Factorial(1),"\t!5 = ",Factorial(5),"\t!10 = ",Factorial(10),"\n")
+	int i=0
+	Cout("From loop!\n")
+        while i<=10
+		COut("!",i,"=",Factorial(i),"\n")
+		i = i + 1
+	end
+end
+
+
