@@ -59,6 +59,7 @@ namespace QuickNeil {
             var CallScript = $"ls = loadstring or load\nlocal LoadNeil = assert(ls(\"{NeilScript.Replace("\\","\\\\").Replace("\n", "\\n").Replace("\r", "").Replace("\"","\\\"")}\",\"Neil itself\"))\nNeil = LoadNeil()";
             Debug.WriteLine(CallScript);
             State.DoString(CallScript, "Call Neil itself");
+            // newk,oftype,rw,defaultvalue
             State.DoString($"Neil.Globals('Args','table','constant',{args})","Set CLI arguments");
             TrickyDebug.Chat("Loaded Neil");
             var s = QuickStream.LoadString(Dirry.AD(script));
