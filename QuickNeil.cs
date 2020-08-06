@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 20.07.17
+// Version: 20.08.06
 // EndLic
 
 using System;
@@ -81,7 +81,7 @@ namespace QuickNeil {
         static void Main(string[] args) {
             try {
                 MKL.Lic    ("Quick Neil - QuickNeil.cs","GNU General Public License 3");
-                MKL.Version("Quick Neil - QuickNeil.cs","20.07.17");
+                MKL.Version("Quick Neil - QuickNeil.cs","20.08.06");
                 if (args.Length==0) {
                     Head();
                     QCol.Cyan("Usage: ");
