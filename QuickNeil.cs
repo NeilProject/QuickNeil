@@ -71,7 +71,8 @@ namespace QuickNeil {
             }
             // Console.WriteLine($"<C#>{scr}</C#>");
             TrickyDebug.Chat("String secured");
-            var sendscr = $"local translation = assert(Neil.Translate(\"{scr}\",\"Translate: {script}\"))\n\nQUICKNEILSCRIPTFUNCTION = assert(ls(translation,\"{script}\"))\n";
+            var sendscr = $"local translation = assert(Neil.Translate(\"{scr}\",\"Translate: {script}\"))\n\nlocal err; QUICKNEILSCRIPTFUNCTION,err = ls(translation,\"{script}\")\n\nif not QUICKNEILSCRIPTFUNCTION then error(\"Compiling the translation failed\\n\"..tostring(err)..\"\\n\\n\"..translation) end";
+            //Console.WriteLine($"<TRANSLATION>\n{sendscr}\n</TRANSLATION>");
             Debug.WriteLine(sendscr);
             State.DoString(sendscr,"Translating");
             State.DoString("QUICKNEILSCRIPTFUNCTION()","Run-Time");
