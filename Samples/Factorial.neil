@@ -15,7 +15,7 @@
 // with basically comes down to the same lack of
 // restriction the public domain offers. (YAY!)
 // ***********************************************************
-// Version 20.08.07
+// Version 20.08.08
 // End License Information
 int Factorial(int n)
 	Assert(n>=0,"Invalid input")
