@@ -1,0 +1,74 @@
+var LuaQuickNeil = Lua.LuaQuickNeil
+
+Class QuickNeilFileInfo
+	int Size
+	string Created
+	string Modified
+	string Attrib
+	
+	public Constructor(table data)
+		For k,v in pairs(data)
+			self[k] = v
+		End
+	End
+End
+
+Group QuickNeil
+
+	Get String ScriptVersion
+		Return LuaQuickNeil:ScriptVersion()
+	End
+
+	Table GetDir(string path=".",bool hidden=false)
+		String r = LuaQuickNeil:GetDir(path,hidden)
+		var f 
+		var e
+		f,e = (Lua.loadstring or Lua.load)(r,"GetDir Result")
+		Lua.assert(f,"Something went horribly wrong here!\n\n"..tostring(e).."\n\n"..r)
+		return f()
+	End
+
+	Table GetTree(string path=".",bool hidden=false)                         
+		string r = LuaQuickNeil:GetTree(path,hidden)                    
+                var f                                                                 
+                var e                                                                 
+                f,e = (Lua.loadstring or Lua.load)(r,"GetTree Result")                 
+                Lua.assert(f,"Something went horribly wrong here!\n\n"..tostring(e).."\n\n"..r) 
+		Return f()          
+	End
+
+	Bool FileExists(string file)
+		Return LuaQuickNeil:FileExists(file)
+	End
+
+	Bool DirExists(string dir)
+		Return LuaQuickNeil:DirExists(dir)
+	End
+
+	String MD5(String s)
+		Return LuaQuickNeil:MD5(s)
+	End
+
+	String LoadString(string file)
+		Return LuaQuickNeil:LoadString(file)
+	End
+
+	Void SaveString(string file,string content)
+		LuaQuickNeil:SaveString(file,content)
+	End
+	
+	Var FileInfo(string File)
+		String r = LuaQuickNeil:FileInfo(File)
+		var f 
+		var e
+		f,e = (Lua.loadstring or Lua.load)(r,"GetDir Result")
+		Lua.assert(f,"Something went horribly wrong here!\n\n"..tostring(e).."\n\n"..r)
+		Return New QuickNeilFileInfo(f())
+	End
+
+End
+
+Init
+	// Security measure.... It's not desirable to call the underlying API directly!
+	Lua.LuaQuickNeil = nil
+End
