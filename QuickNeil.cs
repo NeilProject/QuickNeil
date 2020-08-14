@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 20.08.08
+// Version: 20.08.14
 // EndLic
 
 using System;
@@ -150,7 +150,7 @@ namespace QuickNeil {
                 if (i < 32 || i > 120 || (char)i == '"' ) scr = scr.Replace($"{(char)i}", $"\\{qstr.Right($"00{i}", 3)}");
             }
             // Console.WriteLine($"<C#>{scr}</C#>");
-            Console.WriteLine($"Script: {script}");
+            // Console.WriteLine($"Script: {script}");
             TrickyDebug.Chat("String secured");
             var sendscr = $"local translation = assert(Neil.Translate(\"{scr}\",\"Translate: {script}\"))\n\nlocal err; QUICKNEILSCRIPTFUNCTION,err = ls(translation,\"{script}\")\n\nif not QUICKNEILSCRIPTFUNCTION then error(\"Compiling the translation failed\\n\"..tostring(err)..\"\\n\\n\"..translation) end";
             //Console.WriteLine($"<TRANSLATION>\n{sendscr}\n</TRANSLATION>");
@@ -163,7 +163,7 @@ namespace QuickNeil {
         static void Main(string[] args) {
             try {
                 MKL.Lic    ("Quick Neil - QuickNeil.cs","GNU General Public License 3");
-                MKL.Version("Quick Neil - QuickNeil.cs","20.08.08");
+                MKL.Version("Quick Neil - QuickNeil.cs","20.08.14");
                 if (args.Length==0) {
                     Head();
                     QCol.Cyan("Usage: ");
