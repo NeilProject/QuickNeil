@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.960
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_QuickNeil", "Setup_QuickNeil\Setup_QuickNeil.vdproj", "{42AC8BE2-E54C-4CBE-A5FF-99178200376B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42AC8BE2-E54C-4CBE-A5FF-99178200376B}.Debug|Default.ActiveCfg = Debug
+		{42AC8BE2-E54C-4CBE-A5FF-99178200376B}.Debug|Default.Build.0 = Debug
+		{42AC8BE2-E54C-4CBE-A5FF-99178200376B}.Release|Default.ActiveCfg = Release
+		{42AC8BE2-E54C-4CBE-A5FF-99178200376B}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9BEE9A4A-489A-46BF-BDDB-2696FAF53970}
+	EndGlobalSection
+EndGlobal
